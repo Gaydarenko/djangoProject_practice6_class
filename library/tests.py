@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 
 
 # Create your tests here.
@@ -21,4 +21,9 @@ class BooksTestCase(TestCase):
 
     def setUp(self):
         book1 = Book.objects.create(**self.book1)
-        book2 = Book.objects.create(**self.book1)
+        book2 = Book.objects.create(**self.book2)
+
+    def test_books_list(self):
+        client = Client()
+        response = client.get('/books/')
+        print(response)
