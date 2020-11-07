@@ -82,8 +82,15 @@ class BooksTestCase(TestCase):
             "author_name": "author3",
             "publish_date": "2003-03-03"
         }
+        test_book_wrong = {
+            "name": 'book3',
+            "author_name": "author3",
+            "publish_date": "test"
+        }
 
         response = client.post('/books/', json.dumps(test_book), content_type="application/json")
-
         self.assertEqual(response.status_code, 201)
         print(response.json())
+
+        response = client.post('/books/', json.dumps(test_book_wrong), content_type="application/json")
+        self.assertEqual(response.status_code, 400)

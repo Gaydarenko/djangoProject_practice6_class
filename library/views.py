@@ -4,7 +4,7 @@ from django.forms import model_to_dict
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.views import View
-from .forms import BookModeForm
+from .forms import BookModelForm
 
 
 from.models import Book
@@ -18,9 +18,11 @@ class BookListView(View):
 
     def post(self, request):
         data = json.loads(request.body)
-        form = BookModeForm(data)
-        if not form.is_valid():
-            return JsonResponse({'error': 'not valid data'}, status=400)
+        form = BookModelForm(data)
+
+        # проверка прописана в middle_wares_mine
+        # if not form.is_valid():
+        #     return JsonResponse({'error': 'not valid data'}, status=400)
 
         book = form.save()
         return JsonResponse(model_to_dict(book), status=201)
