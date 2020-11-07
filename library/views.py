@@ -1,7 +1,8 @@
+from django.forms import model_to_dict
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views import View
-from django.forms import model_to_dict
+
 
 from.models import Book
 
@@ -18,7 +19,8 @@ class BookListView(View):
 
 class BookView(View):
     def get(self, request, book_id):
-        ...
+        book = Book.objects.get(pk=book_id)   # not found?
+        return JsonResponse(model_to_dict(book), safe=False)
 
     def post(self, request, book_id):
         ...
