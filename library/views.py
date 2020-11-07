@@ -1,6 +1,6 @@
 from django.forms import model_to_dict
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.views import View
 
 
@@ -32,5 +32,7 @@ class BookView(View):
 
     def delete(self, request, book_id):
         # ...
-        book = Book.objects.get(pk=book_id)
-        book.objects.delete()
+        # book = Book.objects.get(pk=book_id)
+        # book.objects.delete()
+        Book.objects.filter(id=book_id).delete()
+        return HttpResponse(status=204)

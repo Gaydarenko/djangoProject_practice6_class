@@ -30,4 +30,5 @@ class Middleware:
     def process_exception(self, request, exception):
         if isinstance(exception, ObjectDoesNotExist):
             # print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+            print("response from middleware")
             return JsonResponse({'error': 'not found'}, status=404)

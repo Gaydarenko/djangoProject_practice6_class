@@ -64,3 +64,11 @@ class BooksTestCase(TestCase):
 
         data = response.json()
         self.assertEqual(data['error'], 'not found')
+
+    def test_book_delete(self):
+        client = Client()
+        response = client.delete('/books/2')
+        self.assertEqual(response.status_code, 204)
+
+        response = client.get('/books/2')
+        self.assertEqual(response.status_code, 404)
