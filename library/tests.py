@@ -1,3 +1,5 @@
+import json
+
 from django.test import TestCase, Client
 from library.models import Book
 
@@ -72,3 +74,16 @@ class BooksTestCase(TestCase):
 
         response = client.get('/books/2')
         self.assertEqual(response.status_code, 404)
+
+    def test_book_create(self):
+        client = Client()
+        test_book = {
+            "name": 'book3',
+            "author_name": "author3",
+            "publish_date": "2003-03-03"
+        }
+
+        response = client.post('/books/', json.dumps(test_book), content_type="application/json")
+
+        self.assertEqual(response.status_code, 201)
+        print(response.json())

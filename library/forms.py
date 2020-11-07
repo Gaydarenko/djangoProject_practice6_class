@@ -5,4 +5,5 @@ from .models import Book
 class BookModeForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = '__all__'
+        # fields = '__all__'
+        exclude = ['id']
