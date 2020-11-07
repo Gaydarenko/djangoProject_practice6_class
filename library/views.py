@@ -19,11 +19,13 @@ class BookListView(View):
 
 class BookView(View):
     def get(self, request, book_id):
-        try:
-            book = Book.objects.get(pk=book_id)   # not found?
-        except Book.DoesNotExist:
-            return JsonResponse({'error': 'not found'}, status=404)
-        return JsonResponse(model_to_dict(book), safe=False)
+        # try:
+        #     book = Book.objects.get(pk=book_id)   # not found?
+        # except Book.DoesNotExist:
+        #     return JsonResponse({'error': 'not found'}, status=404)
+
+        book = Book.objects.get(pk=book_id)   # not found?
+        return JsonResponse(model_to_dict(book))
 
     def post(self, request, book_id):
         ...
