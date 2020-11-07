@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'library.middle_wares_mine.middleawre',
     'library.middle_wares_mine.Middleware',
+    'library.middle_wares_mine.MiddlewareValidation',
 ]
 
 ROOT_URLCONF = 'djangoProject_practice6_class.urls'

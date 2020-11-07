@@ -32,5 +32,17 @@ class Middleware:
             print("response from middleware")
             return JsonResponse({'error': 'not found'}, status=404)
 
+        # if isinstance(exception, ValueError):
+        #     return JsonResponse({'error': 'not valid data'}, status=400)
+
+class MiddlewareValidation:
+    def __init__(self, get_response):   # def middleawre(get_response):
+        self.get_response = get_response
+        # возвращает созданный обьект, он вызываемый, потому что __call__
+
+    def __call__(self, request):    # def middleware_callable(request):
+        return self.get_response(request)
+
+    def process_exception(self, request, exception):
         if isinstance(exception, ValueError):
             return JsonResponse({'error': 'not valid data'}, status=400)
