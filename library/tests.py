@@ -92,5 +92,5 @@ class BooksTestCase(TestCase):
         self.assertEqual(response.status_code, 201)
         print(response.json())
 
-        response = client.post('/books/', json.dumps(test_book_wrong), content_type="application/json")
+        response = client.post('/books/', 'sfhggbs/.;fklgjl', content_type="application/json")
         self.assertEqual(response.status_code, 400)

@@ -5,8 +5,6 @@ from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.views import View
 from .forms import BookModelForm
-
-
 from.models import Book
 
 
@@ -21,8 +19,8 @@ class BookListView(View):
         form = BookModelForm(data)
 
         # проверка прописана в middle_wares_mine
-        # if not form.is_valid():
-        #     return JsonResponse({'error': 'not valid data'}, status=400)
+        if not form.is_valid():
+            return JsonResponse({'error': 'not valid data'}, status=400)
 
         book = form.save()
         return JsonResponse(model_to_dict(book), status=201)
@@ -39,7 +37,13 @@ class BookView(View):
         return JsonResponse(model_to_dict(book))
 
     def post(self, request, book_id):
+        # book = JsonResponse(model_to_dict(Book.objects.get(id=book_id)))
+        # self.delete(request, book_id)
+        # form = BookModelForm(book)
+        # book = form.save()
+        # return JsonResponse(model_to_dict(book), status=201)
         ...
+
 
     def delete(self, request, book_id):
         # ...
